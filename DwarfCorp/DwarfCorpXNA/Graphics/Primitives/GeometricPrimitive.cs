@@ -151,6 +151,8 @@ namespace DwarfCorp
             int newWidth = (int)Math.Ceiling((widthScale) * textureBounds.Width);
             int newHeight = (int)Math.Ceiling((heightScale) * textureBounds.Height);
 
+            if (newWidth > 2048) newWidth = 2048;
+            if (newHeight > 2048) newHeight = 2048;
 
             if (Lightmap == null || Lightmap.Width < newWidth || Lightmap.Height < newHeight)
             {

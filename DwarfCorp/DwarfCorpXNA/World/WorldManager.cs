@@ -146,7 +146,8 @@ namespace DwarfCorp
         // A shader which draws fancy light blooming to the screen
         private BloomComponent bloom;
 
-        private FXAA fxaa;
+        // NOTE: KILLING FXAA FOR REACH TEST.
+        //private FXAA fxaa;
 
         // Responsible for drawing liquids.
         public WaterRenderer WaterRenderer;
@@ -495,8 +496,8 @@ namespace DwarfCorp
             bloom.Initialize();
 
 
-            fxaa = new FXAA();
-            fxaa.Initialize();
+            // [FXAA] fxaa = new FXAA();
+            // [FXAA] fxaa.Initialize();
 
             SoundManager.Content = Content;
             if (PlanService != null)
@@ -1578,7 +1579,7 @@ namespace DwarfCorp
             }
             else if (UseFXAA)
             {
-                fxaa.Begin(DwarfTime.LastTime, fxaa.RenderTarget);
+                // [FXAA] fxaa.Begin(DwarfTime.LastTime, fxaa.RenderTarget);
             }
 
             // Draw the sky
@@ -1640,14 +1641,14 @@ namespace DwarfCorp
 
             if (GameSettings.Default.EnableGlow)
             {
-                bloom.DrawTarget = UseFXAA ? fxaa.RenderTarget : null;
+                bloom.DrawTarget = null; // [FXAA] UseFXAA ? fxaa.RenderTarget : null;
                 bloom.Draw(gameTime.ToGameTime());
-                if (UseFXAA)
-                    fxaa.End(DwarfTime.LastTime, fxaa.RenderTarget);
+                // [FXAA] if (UseFXAA)
+                // [FXAA]       fxaa.End(DwarfTime.LastTime, fxaa.RenderTarget);
             }
             else if (UseFXAA)
             {
-                fxaa.End(DwarfTime.LastTime, fxaa.RenderTarget);
+                // [FXAA] fxaa.End(DwarfTime.LastTime, fxaa.RenderTarget);
             }
 
             RasterizerState rasterizerState = new RasterizerState()

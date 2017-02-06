@@ -10,8 +10,8 @@ sampler diffuseSampler = sampler_state
     MAGFILTER = POINT;
     MINFILTER = POINT;
     MIPFILTER = POINT;
-    AddressU = Wrap;
-    AddressV = Wrap;
+    AddressU = Clamp;
+    AddressV = Clamp;
 };
 
 struct TexturedVertexShaderInput
